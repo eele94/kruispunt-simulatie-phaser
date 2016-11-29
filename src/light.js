@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import API from './api'
 
 export default class Light  extends Phaser.Group {
 
@@ -13,6 +14,7 @@ export default class Light  extends Phaser.Group {
 		this.sprite.height = 63
 		this.sprite.anchor.set(0.5)
 		this.add(this.sprite)
+		this.api = new API()
 		// this.color = 'green'
 		this.color = node.color
 
@@ -71,6 +73,7 @@ export default class Light  extends Phaser.Group {
 	set count (val) {
 		this._count = val
 		this.text.setText(this.id + ':' + this._count)
+		this.api.sendTrafficState()
 	}
 	get count () {
 		return this._count

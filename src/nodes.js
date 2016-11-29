@@ -13,7 +13,7 @@ export default [
 			{
 				x: 1356,
 				y: 454,
-				light: true
+				light: 1
 			},
 			{
 				x: 1087,
@@ -49,7 +49,7 @@ export default [
 			{
 				x: 1356,
 				y: 508,
-				light: true
+				light: 2
 			},
 			{
 				x: 1087,
@@ -89,7 +89,7 @@ export default [
 			{
 				x: 1017,
 				y: 1006,
-				light: true
+				light: 3
 			},
 			{
 				x: 1017,
@@ -125,7 +125,7 @@ export default [
 			{
 				x: 958,
 				y: 1006,
-				light: true
+				light: 4
 			},
 			{
 				x: 958,
@@ -165,7 +165,7 @@ export default [
 			{
 				x: 500,
 				y: 628,
-				light: true
+				light: 5
 			},
 			{
 				x: 800,
@@ -201,7 +201,7 @@ export default [
 			{
 				x: 500,
 				y: 567,
-				light: true
+				light: 6
 			},
 			{
 				x: 800,
@@ -233,7 +233,7 @@ export default [
 			{
 				x: 500,
 				y: 511,
-				light: true
+				light: 7
 			},
 			{
 				x: 805,
@@ -269,7 +269,7 @@ export default [
 			{
 				x: 785,
 				y: 83,
-				light: true
+				light: 8
 			},
 			{
 				x: 785,
@@ -305,7 +305,7 @@ export default [
 			{
 				x: 839,
 				y: 83,
-				light: true
+				light: 9
 			},
 			{
 				x: 839,
@@ -341,7 +341,7 @@ export default [
 			{
 				x: 895,
 				y: 83,
-				light: true
+				light: 10
 			},
 			{
 				x: 895,
@@ -521,7 +521,7 @@ export default [
 			{
 				x: 1494,
 				y: 386,
-				light: true
+				light: 42
 			},
 			{
 				x: -100,

@@ -4,11 +4,11 @@ import Light from './light'
 
 export default class LightController  extends Phaser.Group {
 
-	constructor (game, parent, name) {
+	constructor (game, parent, name, api) {
 		super(game, parent, name)
 
 		Nodes.forEach(x => {
-			let light = new Light(this.game, this.game.world, x.id, x)
+			let light = new Light(this.game, this.game.world, x.id, x, api)
 			this.add(light)
 		})
 	}

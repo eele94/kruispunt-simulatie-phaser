@@ -1,30 +1,30 @@
+let instance = null
+
 export default class API {
-	/**
-	 * Creates an instance of API.
-	 *
-	 * @param {string} wsAddress
-	 * @param {LightController} lightController
-	 *
-	 * @memberOf API
-	 */
-	constructor (wsAddress, lightController) {
-		this.wsAddress = wsAddress
+	constructor () {
+		if(!instance) {
+			instance = this
+		}
+
+		this.time = new Date()
 		this.ws = {}
+		this.wsAddress = ''
+		this.lightController = null
+
+		return instance
+	}
+
+	setup (wsAddress, lightController) {
+		this.wsAddress = wsAddress
 		this.lightController = lightController
+
 		this.connect(wsAddress)
 	}
 
-	/**
-	 *
-	 *
-	 * @param {string} wsAddress
-	 *
-	 * @memberOf API
-	 */
 	connect (wsAddress) {
 		if (wsAddress) {
 			this.wsAddress = wsAddress
-			console.log('Connecting to: %s', wsAddress)
+			console.log('Trying to connect @ %s', wsAddress)
 			this.ws = new WebSocket(wsAddress)
 
 			this.ws.onopen = () => {
