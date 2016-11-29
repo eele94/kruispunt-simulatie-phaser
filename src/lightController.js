@@ -2,7 +2,7 @@ import Phaser from 'phaser'
 import Nodes from './nodes'
 import Light from './sprites/light'
 
-export default class LightController  extends Phaser.Group{
+export default class LightController  extends Phaser.Group {
 
 	constructor (game, parent, name) {
 		super(game, parent, name)

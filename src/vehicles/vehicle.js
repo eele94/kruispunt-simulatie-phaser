@@ -49,13 +49,13 @@ export default class Vehicle extends Phaser.Sprite {
 		let ix = 0
 		let x = 10 / this.game.width
 
-		for (let i = 0; i <= 1; i += x){
+		for (let i = 0; i <= 1; i += x) {
 			let px = Phaser.Math.linearInterpolation(this.points.x, i)
 			let py = Phaser.Math.linearInterpolation(this.points.y, i)
 
 			var node = { x: px, y: py, angle: 0 }
 
-			if (ix > 0){
+			if (ix > 0) {
 				switch(this.light.node.dir) {
 				case 'u':
 					node.angle -= Phaser.Math.angleBetweenPointsY(node, this.path[ix - 1])

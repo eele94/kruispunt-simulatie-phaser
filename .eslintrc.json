@@ -20,6 +20,9 @@
         "constructor-super": "warn",
         "valid-typeof": "warn",
         "space-before-function-paren": ["error", "always"],
+        "space-before-blocks": ["error", "always"],
+        "comma-dangle": ["error", "always"],
+        "no-trailing-spaces": ["error", "always"],
         "indent": [
             2,
             "tab"
