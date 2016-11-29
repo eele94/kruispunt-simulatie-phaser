@@ -32,10 +32,13 @@ export default class Vehicle extends Phaser.Sprite {
 		})
 
 		this.VEHICLE_DISTANCE = 0
+		this.queuePosition = this.getVehiclesInFront()
 		this.rotationOffset = light.sprite.rotation
 		this.pi = 0
 		this.path = []
 		this.plot()
+		console.log('Vehicle')
+		console.log('queuePosition: ' + this.queuePosition)
 	}
 
 	/**
@@ -77,6 +80,10 @@ export default class Vehicle extends Phaser.Sprite {
 		}
 	}
 
+	getVehiclesInFront() {
+		return this.light.count -1
+	}
+
 	update () {
 		// Check if not at end of path
 		if (this.pi < this.path.length) {
@@ -85,8 +92,7 @@ export default class Vehicle extends Phaser.Sprite {
 			// get number of vehicles in front of the light and set an offset based on the direction
 				this.lightStopLocations.forEach(point => {
 
-					let vehiclesInFront = this.light.count - 1
-					let keepDistance = this.VEHICLE_DISTANCE * vehiclesInFront
+					let keepDistance = this.VEHICLE_DISTANCE * this.queuePosition
 					switch(this.light.node.dir) {
 					case 'r':
 						point.x -= keepDistance
@@ -125,7 +131,7 @@ export default class Vehicle extends Phaser.Sprite {
 							console.log('sleeping')
 						}
 					} else {
-					// update location
+						// update location
 						this.x = this.path[this.pi].x
 						this.y = this.path[this.pi].y
 						this.rotation = this.rotationOffset + this.path[this.pi].angle

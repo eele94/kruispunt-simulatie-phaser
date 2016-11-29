@@ -1,6 +1,6 @@
 import Phaser from 'phaser'
 import Nodes from './nodes'
-import Light from './sprites/light'
+import Light from './light'
 
 export default class LightController  extends Phaser.Group {
 

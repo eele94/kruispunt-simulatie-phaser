@@ -97,5 +97,20 @@ export default class VehicleController extends Phaser.Group {
 		key4.onDown.add(this.addWalker, this)
 		let key5 = this.game.input.keyboard.addKey(Phaser.Keyboard.FIVE)
 		key5.onDown.add(this.addCyclist, this)
+		let key6 = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
+		key6.onDown.add(this.addCarAtLane, this)
+	}
+
+	// specific
+	addCarAtLane () {
+		console.log('add Car at lane')
+		// car light nodes are defined from 1, 10
+		let lane = 7
+		let light = this.game.world.getByName('lightController').getByName(lane)
+		// let light = this.game.world.getByName('lightController').getAt(6)
+		let car = new Car(this.game, light)
+
+		this.add(car)
+		this.api.sendTrafficState()
 	}
 }
