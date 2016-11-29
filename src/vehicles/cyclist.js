@@ -13,6 +13,6 @@ export default class Cyclist extends Vehicle {
 
 		super(game, 'cyclist', light)
 		this.scale.set(0.6)
-
+		this.VEHICLE_DISTANCE = 0
 	}
 }

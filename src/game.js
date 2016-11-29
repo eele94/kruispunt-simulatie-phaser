@@ -1,7 +1,8 @@
 /* globals __DEV__ */
 import Phaser from 'phaser'
-import VehicleController from '../vehicleController.js'
-import LightController from '../lightController.js'
+import VehicleController from './vehicleController'
+import LightController from './lightController'
+import API from './api'
 
 export default class extends Phaser.State {
 	init () {}
@@ -51,10 +52,18 @@ export default class extends Phaser.State {
 
 	create () {
 		this.game.add.image(0,0,'background')
+		this.api = null
 
-		this.vehicleController = new VehicleController(this.game, this.game.world, 'vehicleController')
 		this.lightController = new LightController(this.game, this.game.world, 'lightController')
+		// ws://localhost:4080
+		// ws://217.120.20.200:8080/ws lukas
+		// ws://2f63d2f2.ngrok.io
+		// eigen: ws://localhost:8000/
+		this.api = new API('ws://localhost:8000/', this.lightController)
+		this.vehicleController = new VehicleController(this.game, this.game.world, 'vehicleController', this.api)
 
+		// render lights above vehicles
+		this.game.world.bringToTop(this.lightController)
 	}
 
 	render () {

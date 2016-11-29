@@ -516,19 +516,16 @@ export default [
 		points: [
 			{
 				x: 2100,
-				y: 450
-			},
-			{
-				x: 1494,
-				y: 450
-			},
-			{
-				x: 864,
 				y: 386
 			},
 			{
+				x: 1494,
+				y: 386,
+				light: true
+			},
+			{
 				x: -100,
-				y: 389
+				y: 386
 			}
 		],
 		dir: 'l',
@@ -537,19 +534,39 @@ export default [
 	{
 		id: 45,
 		position: {
-			x: -100,
-			y: -100
+			x: 1380,
+			y: 911
 		},
-		dir: 'u',
+		points: [
+			{
+				x: 2086,
+				y: 922
+			},
+			{
+				x: -100,
+				y: 922
+			}
+		],
+		dir: 'l',
 		color: 'red'
 	},
 	{
 		id: 46,
 		position: {
-			x: -100,
-			y: -100
+			x: 500,
+			y: 947
 		},
-		dir: 'u',
+		points: [
+			{
+				x: -100,
+				y: 922
+			},
+			{
+				x: 2086,
+				y: 922
+			}
+		],
+		dir: 'r',
 		color: 'red'
 	}
 ]

@@ -31,6 +31,7 @@ export default class Vehicle extends Phaser.Sprite {
 			}
 		})
 
+		this.VEHICLE_DISTANCE = 0
 		this.rotationOffset = light.sprite.rotation
 		this.pi = 0
 		this.path = []
@@ -79,59 +80,72 @@ export default class Vehicle extends Phaser.Sprite {
 	update () {
 		// Check if not at end of path
 		if (this.pi < this.path.length) {
+			// check if the vehicle has to check lights
+			if (this.lightStopLocations.length > 0) {
+			// get number of vehicles in front of the light and set an offset based on the direction
+				this.lightStopLocations.forEach(point => {
 
-			// get number of vehicles in front of the ligh and check if vehicle is at a lightStopLocation
-			this.lightStopLocations.forEach(point => {
-				const margin = 5
-				let posX = this.x
-				let posY = this.y
-				let vehiclesInFront = this.light.count
-				let keepDistance = 90 * vehiclesInFront
-				switch(this.light.dir) {
-				case 'r':
-					posX -= keepDistance
-					break
-				case 'l':
-					posX += keepDistance
-					break
-				case 'u':
-					posY += keepDistance
-					break
-				case 'd':
-					posY -= keepDistance
-					break
-				default:
+					let vehiclesInFront = this.light.count - 1
+					let keepDistance = this.VEHICLE_DISTANCE * vehiclesInFront
+					switch(this.light.node.dir) {
+					case 'r':
+						point.x -= keepDistance
+						break
+					case 'l':
+						point.x += keepDistance
+						break
+					case 'u':
+						point.y += keepDistance
+						break
+					case 'd':
+						point.y -= keepDistance
+						break
+					default:
 
-					break
-				}
+						break
+					}
 
-				if ((posX > (point.x - margin) && posX < (point.x + margin)) && (posY > (point.y - margin) && posY < (point.y + margin))) {
+					// console.log('update')
+					// console.log('keepDistance' + keepDistance)
+					const margin = 5
+					// check if the vehicle is at lightStopLocation
+					if (this.atPosition(this, point, margin)) {
 
-					// check if the light is green
-					if (this.light.color === 'green') {
-						// update location
+						// check if the light is green
+						if (this.light.color === 'green') {
+							// update location
+							this.x = this.path[this.pi].x
+							this.y = this.path[this.pi].y
+							this.rotation = this.rotationOffset + this.path[this.pi].angle
+							this.pi++
+							// decrease count of vehicles in front of the light
+							this.light.count--
+						} else {
+							// wait zzzZzzzZzZZZzzz
+							console.log('sleeping')
+						}
+					} else {
+					// update location
 						this.x = this.path[this.pi].x
 						this.y = this.path[this.pi].y
 						this.rotation = this.rotationOffset + this.path[this.pi].angle
 						this.pi++
-						// decrease count of vehicles in front of the light
-						this.light.count--
-					} else {
-						// wait zzzZzzzZzZZZzzz
 					}
-
-				} else {
-					// update location
-					this.x = this.path[this.pi].x
-					this.y = this.path[this.pi].y
-					this.rotation = this.rotationOffset + this.path[this.pi].angle
-					this.pi++
-				}
-			})
-
-
+				})
+			} else {
+				// update location
+				this.x = this.path[this.pi].x
+				this.y = this.path[this.pi].y
+				this.rotation = this.rotationOffset + this.path[this.pi].angle
+				this.pi++
+			}
 		} else {
+			// remove vehicle from the world
 			this.game.world.getByName('vehicleController').remove(this)
 		}
+	}
+
+	atPosition (p1, p2, margin) {
+		return (Math.abs(p1.x - p2.x) < margin && Math.abs(p1.y-p2.y) < margin)
 	}
 }

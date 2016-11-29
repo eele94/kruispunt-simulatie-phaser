@@ -8,9 +8,10 @@ import Cyclist from './vehicles/cyclist'
 
 export default class VehicleController extends Phaser.Group {
 
-	constructor (game, parent, name) {
+	constructor (game, parent, name, api) {
 		super(game, parent, name)
 		this.game = game
+		this.api = api
 		this.initDebugKeys()
 	}
 
@@ -38,6 +39,7 @@ export default class VehicleController extends Phaser.Group {
 		let car = new Car(this.game, light)
 
 		this.add(car)
+		this.api.sendTrafficState()
 	}
 
 	addTrain () {
@@ -49,6 +51,7 @@ export default class VehicleController extends Phaser.Group {
 		let train = new Train(this.game, light)
 
 		this.add(train)
+		this.api.sendTrafficState()
 	}
 
 	addBus () {
@@ -58,6 +61,7 @@ export default class VehicleController extends Phaser.Group {
 		let bus = new Bus(this.game, light)
 
 		this.add(bus)
+		this.api.sendTrafficState()
 	}
 
 	addWalker () {
@@ -68,6 +72,7 @@ export default class VehicleController extends Phaser.Group {
 		let walker = new Walker(this.game, light)
 
 		this.add(walker)
+		this.api.sendTrafficState()
 	}
 
 	addCyclist () {
@@ -78,6 +83,7 @@ export default class VehicleController extends Phaser.Group {
 		let cyclist = new Cyclist(this.game, light)
 
 		this.add(cyclist)
+		this.api.sendTrafficState()
 	}
 
 	initDebugKeys () {

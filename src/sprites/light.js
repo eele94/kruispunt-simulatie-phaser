@@ -13,8 +13,8 @@ export default class Light  extends Phaser.Group {
 		this.sprite.height = 63
 		this.sprite.anchor.set(0.5)
 		this.add(this.sprite)
-		this.color = 'green'
-		// this.color = node.color
+		// this.color = 'green'
+		this.color = node.color
 
 		switch(node.dir) {
 		case 'u':

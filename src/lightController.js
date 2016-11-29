@@ -15,7 +15,11 @@ export default class LightController  extends Phaser.Group{
 
 	setLightState (state) {
 		this.children.forEach(x => {
-			x.color = 'green'
+			state.forEach(y => {
+				if(x.id === y.trafficLight) {
+					x.color = y.status
+				}
+			})
 		})
 	}
 

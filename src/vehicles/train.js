@@ -10,9 +10,13 @@ export default class Train extends Vehicle {
 	 * @memberOf Train
 	 */
 	constructor (game, light) {
-
 		super(game, 'train', light)
-		this.scale.set(0.6)
+		this.scale.set(0.4)
 
+		if (this.light.node.dir === 'l') {
+			this.scale.x = -0.4
+		}
+
+		this.VEHICLE_DISTANCE = 0
 	}
 }
