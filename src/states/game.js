@@ -11,14 +11,42 @@ export default class extends Phaser.State {
 		this.load.image('background', './assets/images/bg.jpg')
 
 		// lights
-		this.load.image('light_green', './assets/images/greenlight.png')
-		this.load.image('light_orange', './assets/images/orangelight.png')
-		this.load.image('light_red', './assets/images/redlight.png')
 		this.load.spritesheet('light', './assets/images/light.png', 54, 150)
 		// cars
 		this.load.image('car_black_1', './assets/images/car_black_1.png')
 		this.load.image('car_yellow_1', './assets/images/car_yellow_1.png')
 		this.load.image('car_green_1', './assets/images/car_green_1.png')
+		this.load.image('car_orange_1', './assets/images/car_orange_1.png')
+		this.load.image('car_blue_1', './assets/images/car_blue_1.png')
+		this.load.image('car_black_2', './assets/images/car_black_2.png')
+		this.load.image('car_yellow_2', './assets/images/car_yellow_2.png')
+		this.load.image('car_green_2', './assets/images/car_green_2.png')
+		this.load.image('car_orange_2', './assets/images/car_orange_2.png')
+		this.load.image('car_blue_2', './assets/images/car_blue_2.png')
+		this.load.image('car_black_3', './assets/images/car_black_3.png')
+		this.load.image('car_yellow_3', './assets/images/car_yellow_3.png')
+		this.load.image('car_green_3', './assets/images/car_green_3.png')
+		this.load.image('car_orange_3', './assets/images/car_orange_3.png')
+		this.load.image('car_blue_3', './assets/images/car_blue_3.png')
+		// cyclist
+		this.load.image('cyclist', './assets/images/cyclist.png')
+		// people
+		this.load.image('p1', './assets/images/p1.png')
+		this.load.image('p2', './assets/images/p2.png')
+		this.load.image('p3', './assets/images/p3.png')
+		this.load.image('p4', './assets/images/p4.png')
+		this.load.image('p5', './assets/images/p5.png')
+		this.load.image('p6', './assets/images/p6.png')
+		this.load.image('p7', './assets/images/p7.png')
+		this.load.image('p8', './assets/images/p8.png')
+		this.load.image('p9', './assets/images/p9.png')
+		this.load.image('p10', './assets/images/p10.png')
+		this.load.image('p11', './assets/images/p11.png')
+		this.load.image('p12', './assets/images/p12.png')
+		// train
+		this.load.image('train', './assets/images/train.png')
+		// bus
+		this.load.image('bus', './assets/images/bus.png')
 	}
 
 	create () {

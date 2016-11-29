@@ -16,7 +16,6 @@ export default class Vehicle extends Phaser.Sprite {
 		super(game, 0, 0, asset)
 		this.anchor.set(0.5)
 		this.light = light
-
 		let pointsX = light.node.points.map(point => point.x)
 		let pointsY = light.node.points.map(point => point.y)
 
@@ -50,8 +49,8 @@ export default class Vehicle extends Phaser.Sprite {
 		let x = 10 / this.game.width
 
 		for (let i = 0; i <= 1; i += x){
-			let px = Phaser.Math.catmullRomInterpolation(this.points.x, i)
-			let py = Phaser.Math.catmullRomInterpolation(this.points.y, i)
+			let px = Phaser.Math.linearInterpolation(this.points.x, i)
+			let py = Phaser.Math.linearInterpolation(this.points.y, i)
 
 			var node = { x: px, y: py, angle: 0 }
 
