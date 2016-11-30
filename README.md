@@ -1,15 +1,14 @@
 # Crossroad simulation
 #### With Phaser + ES6 + Webpack
 
-[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
-
-
 ## Features
-- JavaScript Standard Style
 - Next generation of Javascript
 - Webpack ready
 - Multiple browser testing
 - WebFont Loader
+
+## Simulation features
+Keys 1 to 5 to spawn vehicles
 
 # Setup
 To use this simulation you’ll need to install a few things before you have a working copy of the project.
