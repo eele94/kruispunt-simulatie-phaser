@@ -45,8 +45,7 @@ export default class Light  extends Phaser.Group {
 	}
 
 	set color (val) {
-		// this._color = val
-		this._color = 'red'
+		this._color = val
 		switch(val) {
 		case 'green':
 			this.sprite.frame = 2

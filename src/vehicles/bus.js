@@ -13,6 +13,6 @@ export default class Bus extends Vehicle {
 
 		super(game, 'bus', light)
 		this.scale.set(0.6)
-		this.VEHICLE_DISTANCE = 0
+		this.VEHICLE_DISTANCE = 220
 	}
 }
