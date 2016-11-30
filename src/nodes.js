@@ -217,7 +217,7 @@ export default [
 			}
 		],
 		dir: 'r',
-		color: 'green'
+		color: 'red'
 	},
 	{
 		id: 7,
@@ -367,8 +367,18 @@ export default [
 		id: 21,
 		position: {
 			x: 1159,
-			y: 628
+			y: 508
 		},
+		points: [
+			{
+				x: 895,
+				y: -60
+			},
+			{
+				x: 2000,
+				y: 633
+			}
+		],
 		dir: 'u',
 		color: 'red'
 	},
@@ -376,7 +386,7 @@ export default [
 		id: 22,
 		position: {
 			x: 1159,
-			y: 508
+			y: 628
 		},
 		dir: 'u',
 		color: 'red'
@@ -387,6 +397,31 @@ export default [
 			x: 1159,
 			y: 928
 		},
+		points: [
+			{
+				x: 1155,
+				y: 1200
+			},
+			{
+				x: 1155,
+				y: 970,
+				light: 23
+			},
+			{
+				x: 1155,
+				y: 675,
+				light: 22
+			},
+			{
+				x: 1155,
+				y: 550,
+				light: 21
+			},
+			{
+				x: 1155,
+				y: -100
+			}
+		],
 		dir: 'u',
 		color: 'red'
 	},
@@ -414,13 +449,38 @@ export default [
 			x: 738,
 			y: 389
 		},
+		points: [
+			{
+				x: 700,
+				y: -100
+			},
+			{
+				x: 700,
+				y: 350,
+				light: 36
+			},
+			{
+				x: 700,
+				y: 475,
+				light: 35
+			},
+			{
+				x: 700,
+				y: 890,
+				light: 34
+			},
+			{
+				x: 700,
+				y: 1100,
+			}
+		],
 		dir: 'd',
 		color: 'red'
 	},
 	{
 		id: 27,
 		position: {
-			x: 957,
+			x: 900,
 			y: 288
 		},
 		dir: 'l',
@@ -429,9 +489,29 @@ export default [
 	{
 		id: 28,
 		position: {
-			x: 1078,
+			x: 1020,
 			y: 288
 		},
+		points: [
+			{
+				x: 2150,
+				y: 250
+			},
+			{
+				x: 1050,
+				y: 250,
+				light: 28
+			},
+			{
+				x: 935,
+				y: 250,
+				light: 27
+			},
+			{
+				x: -100,
+				y: 250,
+			}
+		],
 		dir: 'l',
 		color: 'red'
 	},
@@ -459,6 +539,31 @@ export default [
 			x: 1218,
 			y: 927
 		},
+		points: [
+			{
+				x: 1215,
+				y: 1200
+			},
+			{
+				x: 1215,
+				y: 970,
+				light: 33
+			},
+			{
+				x: 1215,
+				y: 675,
+				light: 32
+			},
+			{
+				x: 1215,
+				y: 550,
+				light: 31
+			},
+			{
+				x: 1215,
+				y: -100,
+			}
+		],
 		dir: 'u',
 		color: 'red'
 	},
@@ -486,13 +591,38 @@ export default [
 			x: 679,
 			y: 389
 		},
+		points: [
+			{
+				x: 640,
+				y: -100
+			},
+			{
+				x: 640,
+				y: 350,
+				light: 26
+			},
+			{
+				x: 640,
+				y: 475,
+				light: 25
+			},
+			{
+				x: 640,
+				y: 890,
+				light: 24
+			},
+			{
+				x: 640,
+				y: 1100,
+			}
+		],
 		dir: 'd',
 		color: 'red'
 	},
 	{
 		id: 37,
 		position: {
-			x: 957,
+			x: 900,
 			y: 228
 		},
 		dir: 'l',
@@ -501,9 +631,29 @@ export default [
 	{
 		id: 38,
 		position: {
-			x: 1078,
+			x: 1020,
 			y: 228
 		},
+		points: [
+			{
+				x: 2150,
+				y: 200
+			},
+			{
+				x: 1050,
+				y: 200,
+				light: 38
+			},
+			{
+				x: 935,
+				y: 200,
+				light: 37
+			},
+			{
+				x: -100,
+				y: 200,
+			}
+		],
 		dir: 'l',
 		color: 'red'
 	},
@@ -539,8 +689,9 @@ export default [
 		},
 		points: [
 			{
-				x: 2086,
-				y: 922
+				x: 2150,
+				y: 922,
+				light: 45
 			},
 			{
 				x: -100,
@@ -558,8 +709,9 @@ export default [
 		},
 		points: [
 			{
-				x: -100,
-				y: 922
+				x: -220,
+				y: 922,
+				light: 46
 			},
 			{
 				x: 2086,

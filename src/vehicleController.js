@@ -12,6 +12,7 @@ export default class VehicleController extends Phaser.Group {
 		super(game, parent, name)
 		this.game = game
 		this.initDebugKeys()
+		this.generateVehicles()
 	}
 
 	update () {
@@ -27,6 +28,55 @@ export default class VehicleController extends Phaser.Group {
 		else {
 			this.game.input.enabled = false
 		}
+	}
+
+	generateVehicles () {
+		this.generateTrains()
+		this.generateCars()
+		this.generateBusses()
+		this.generateWalkers()
+		this.generateCyclists()
+
+	}
+
+	generateTrains () {
+		let time = this.game.rnd.integerInRange(25000, 35000)
+		setTimeout (() => {
+			this.addTrain()
+			this.generateTrains()
+		}, time)
+	}
+
+	generateCars () {
+		let time = this.game.rnd.integerInRange(25000, 35000)
+		setTimeout (() => {
+			this.addCar()
+			this.generateCars()
+		}, time)
+	}
+
+	generateBusses () {
+		let time = this.game.rnd.integerInRange(10000, 20000)
+		setTimeout (() => {
+			this.addBus()
+			this.generateBusses()
+		}, time)
+	}
+
+	generateWalkers () {
+		let time = this.game.rnd.integerInRange(4000, 10000)
+		setTimeout (() => {
+			this.addWalker()
+			this.generateWalkers()
+		}, time)
+	}
+
+	generateCyclists () {
+		let time = this.game.rnd.integerInRange(4000, 10000)
+		setTimeout (() => {
+			this.addCyclist()
+			this.generateCyclists()
+		}, time)
 	}
 
 	addCar () {
@@ -62,8 +112,10 @@ export default class VehicleController extends Phaser.Group {
 
 	addWalker () {
 		console.log('add Walker')
-		// bus light nodes are defined from 31, 38
-		let random = this.game.rnd.integerInRange(31, 38)
+		// walker spawn light nodes
+		// 33, 36, 38
+		let startNodes = [33, 36, 38]
+		let random = startNodes[this.game.rnd.integerInRange(0, startNodes.length-1)]
 		let light = this.game.world.getByName('lightController').getByName(random)
 		let walker = new Walker(this.game, light)
 
@@ -72,8 +124,10 @@ export default class VehicleController extends Phaser.Group {
 
 	addCyclist () {
 		console.log('add Cyclist')
-		// bus light nodes are defined from 21, 28
-		let random = this.game.rnd.integerInRange(21, 28)
+		// cyclist spawn light nodes
+		// 23, 26, 28
+		let startNodes = [23, 26, 28]
+		let random = startNodes[this.game.rnd.integerInRange(0, startNodes.length-1)]
 		let light = this.game.world.getByName('lightController').getByName(random)
 		let cyclist = new Cyclist(this.game, light)
 

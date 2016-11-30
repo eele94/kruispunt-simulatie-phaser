@@ -15,6 +15,6 @@ export default class Walker extends Vehicle {
 
 		super(game, randomTexture, light)
 		this.scale.set(0.6)
-		this.VEHICLE_DISTANCE = 0
+		this.VEHICLE_DISTANCE = 25
 	}
 }
