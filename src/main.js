@@ -2,7 +2,7 @@ import 'pixi'
 import 'p2'
 import Phaser from 'phaser'
 
-import GameState from './game'
+import Simulation from './game'
 
 /**
  *
@@ -19,14 +19,14 @@ class Game extends Phaser.Game {
 	 * @memberOf Game
 	 */
 	constructor () {
-		let width = 1920
-		let height = 1080
+		const width = 1920
+		const height = 1080
 
 		super(width, height, Phaser.AUTO, 'content', null)
 
-		this.state.add('Game', GameState, false)
+		this.state.add('Simulation', Simulation, false)
 
-		this.state.start('Game')
+		this.state.start('Simulation')
 
 		// TODO: repair auto resizing
 		// Make sure we maintain the correct aspect ratio.

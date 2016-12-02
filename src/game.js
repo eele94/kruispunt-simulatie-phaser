@@ -19,11 +19,12 @@ export default class GameState extends Phaser.State {
 	 * @memberOf GameState
 	 */
 	init () {
-		
+		this.WSADDRESS = 'ws://localhost:8000'
 	}
+
 	/**
 	 *
-	 *
+	 * Preloads assets and settings
 	 *
 	 * @memberOf GameState
 	 */
@@ -84,11 +85,8 @@ export default class GameState extends Phaser.State {
 
 		this.lightController = new LightController(this.game, this.game.world, 'lightController', this.api)
 
-		// ws://localhost:8000
-		// ws://217.120.20.200:8080/ws lukas
-		// ws://2f63d2f2.ngrok.io
 		this.api = new API()
-		this.api.setup('ws://localhost:8000', this.lightController)
+		this.api.setup(this.WSADDRESS, this.lightController)
 	}
 
 	/**

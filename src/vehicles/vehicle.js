@@ -23,17 +23,9 @@ export default class Vehicle extends Phaser.Sprite {
 		super(game, 0, 0, asset)
 		this.anchor.set(0.5)
 		this.light = light
-		/**
-		 *
-		 *
-		 * @param {any} point
-		 */
+
 		let pointsX = light.node.points.map(point => point.x)
-		/**
-		 *
-		 *
-		 * @param {any} point
-		 */
+
 		let pointsY = light.node.points.map(point => point.y)
 
 		this.points = {
@@ -64,8 +56,8 @@ export default class Vehicle extends Phaser.Sprite {
 	}
 
 	/**
-	 * Calculates the path and interpolates the movement and the rotation of the vehicle
 	 *
+	 * Calculates the path and interpolates the movement and the rotation of the vehicle
 	 *
 	 * @memberOf Vehicle
 	 */
@@ -104,7 +96,7 @@ export default class Vehicle extends Phaser.Sprite {
 
 	/**
 	 *
-	 *
+	 * Gets called at each frame update of the canvas
 	 *
 	 * @memberOf Vehicle
 	 */

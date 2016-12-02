@@ -21,7 +21,7 @@
         "valid-typeof": "warn",
         "space-before-function-paren": ["error", "always"],
         "space-before-blocks": ["error", "always"],
-        "no-comma-dangle": ["error", "always"],
+        "comma-dangle": ["error", "never"],
         "no-trailing-spaces": ["error", { "skipBlankLines": true }],
         "indent": [
             2,
