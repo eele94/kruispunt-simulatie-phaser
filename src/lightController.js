@@ -2,8 +2,25 @@ import Phaser from 'phaser'
 import Nodes from './nodes'
 import Light from './light'
 
+/**
+ *
+ *
+ * @export
+ * @class LightController
+ * @extends {Phaser.Group}
+ */
 export default class LightController  extends Phaser.Group {
 
+	/**
+	 * Creates an instance of LightController.
+	 *
+	 * @param {Phaser.Game} game
+	 * @param {Phaser.Group} parent
+	 * @param {String} name
+	 * @param {API} api
+	 *
+	 * @memberOf LightController
+	 */
 	constructor (game, parent, name, api) {
 		super(game, parent, name)
 
@@ -13,6 +30,13 @@ export default class LightController  extends Phaser.Group {
 		})
 	}
 
+	/**
+	 *
+	 *
+	 * @param {Array<LightStatus>} state
+	 *
+	 * @memberOf LightController
+	 */
 	setLightState (state) {
 		this.children.forEach(x => {
 			state.forEach(y => {
@@ -23,6 +47,13 @@ export default class LightController  extends Phaser.Group {
 		})
 	}
 
+	/**
+	 *
+	 *
+	 * @returns state object readable for the Controller
+	 *
+	 * @memberOf LightController
+	 */
 	getLightState () {
 		return {
 			state: this.children.map(x => {

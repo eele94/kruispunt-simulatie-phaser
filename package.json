@@ -1,13 +1,12 @@
 {
-  "name": "PhaserES6Webpack",
+  "name": "kruispunt-simulatie-phaser",
   "version": "1.0.0",
   "description": "",
-  "author": "leandro cabrera <leandcabrera@gmail.com>",
+  "author": "Eele Sikkes<eele_mailadres@hotmail.com>",
   "main": "index.js",
   "scripts": {
     "dev": "webpack",
-    "deploy": "webpack --config webpack.production.config.js",
-    "test": "standard"
+    "deploy": "webpack --config webpack.production.config.js"
   },
   "license": "ISC",
   "devDependencies": {
@@ -18,7 +17,6 @@
     "browser-sync": "^2.15.0",
     "browser-sync-webpack-plugin": "^1.1.2",
     "expose-loader": "^0.7.1",
-    "standard": "^8.0.0",
     "webfontloader": "^1.6.26",
     "webpack": "^1.13.2"
   },
