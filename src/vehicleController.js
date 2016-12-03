@@ -6,8 +6,24 @@ import Train from './vehicles/train'
 import Bus from './vehicles/bus'
 import Cyclist from './vehicles/cyclist'
 
+/**
+ *
+ *
+ * @export
+ * @class VehicleController
+ * @extends {Phaser.Group}
+ */
 export default class VehicleController extends Phaser.Group {
 
+	/**
+	 * Creates an instance of VehicleController.
+	 *
+	 * @param {Phaser.Game} game
+	 * @param {Phaser.Group} parent
+	 * @param {String} name
+	 *
+	 * @memberOf VehicleController
+	 */
 	constructor (game, parent, name) {
 		super(game, parent, name)
 		this.game = game
@@ -15,6 +31,12 @@ export default class VehicleController extends Phaser.Group {
 		// this.generateVehicles()
 	}
 
+	/**
+	 *
+	 *
+	 *
+	 * @memberOf VehicleController
+	 */
 	update () {
 		this.children.forEach(x => {
 			if (x instanceof Vehicle) {
@@ -30,6 +52,12 @@ export default class VehicleController extends Phaser.Group {
 		}
 	}
 
+	/**
+	 *
+	 *
+	 *
+	 * @memberOf VehicleController
+	 */
 	generateVehicles () {
 		this.generateTrains()
 		this.generateCars()
@@ -39,6 +67,12 @@ export default class VehicleController extends Phaser.Group {
 
 	}
 
+	/**
+	 *
+	 *
+	 *
+	 * @memberOf VehicleController
+	 */
 	generateTrains () {
 		let time = this.game.rnd.integerInRange(25000, 35000)
 		setTimeout (() => {
@@ -47,14 +81,26 @@ export default class VehicleController extends Phaser.Group {
 		}, time)
 	}
 
+	/**
+	 *
+	 *
+	 *
+	 * @memberOf VehicleController
+	 */
 	generateCars () {
-		let time = this.game.rnd.integerInRange(25000, 35000)
+		let time = this.game.rnd.integerInRange(2500, 3500)
 		setTimeout (() => {
 			this.addCar()
 			this.generateCars()
 		}, time)
 	}
 
+	/**
+	 *
+	 *
+	 *
+	 * @memberOf VehicleController
+	 */
 	generateBusses () {
 		let time = this.game.rnd.integerInRange(10000, 20000)
 		setTimeout (() => {
@@ -63,6 +109,12 @@ export default class VehicleController extends Phaser.Group {
 		}, time)
 	}
 
+	/**
+	 *
+	 *
+	 *
+	 * @memberOf VehicleController
+	 */
 	generateWalkers () {
 		let time = this.game.rnd.integerInRange(4000, 10000)
 		setTimeout (() => {
@@ -71,6 +123,12 @@ export default class VehicleController extends Phaser.Group {
 		}, time)
 	}
 
+	/**
+	 *
+	 *
+	 *
+	 * @memberOf VehicleController
+	 */
 	generateCyclists () {
 		let time = this.game.rnd.integerInRange(4000, 10000)
 		setTimeout (() => {
@@ -79,28 +137,44 @@ export default class VehicleController extends Phaser.Group {
 		}, time)
 	}
 
+	/**
+	 *
+	 * Adds a Car to a random start node
+	 *
+	 * @memberOf VehicleController
+	 */
 	addCar () {
 		console.log('add Car')
 		// car light nodes are defined from 1, 10
 		let random = this.game.rnd.integerInRange(1, 10)
 		let light = this.game.world.getByName('lightController').getByName(random)
-		// let light = this.game.world.getByName('lightController').getAt(6)
 		let car = new Car(this.game, light)
 
 		this.add(car)
 	}
 
+	/**
+	 *
+	 * Adds a Train to a random start node
+	 *
+	 * @memberOf VehicleController
+	 */
 	addTrain () {
 		console.log('add Train')
 		// train light nodes are defined from 45, 46
 		let random = this.game.rnd.integerInRange(45, 46)
 		let light = this.game.world.getByName('lightController').getByName(random)
-		// let light = this.game.world.getByName('lightController').getAt(6)
 		let train = new Train(this.game, light)
 
 		this.add(train)
 	}
 
+	/**
+	 *
+	 * Adds a Bus to a random start node
+	 *
+	 * @memberOf VehicleController
+	 */
 	addBus () {
 		console.log('add Bus')
 		// bus light nodes are defined from 42
@@ -110,6 +184,12 @@ export default class VehicleController extends Phaser.Group {
 		this.add(bus)
 	}
 
+	/**
+	 *
+	 * Adds a Walker to a random start node
+	 *
+	 * @memberOf VehicleController
+	 */
 	addWalker () {
 		console.log('add Walker')
 		// walker spawn light nodes
@@ -122,6 +202,12 @@ export default class VehicleController extends Phaser.Group {
 		this.add(walker)
 	}
 
+	/**
+	 *
+	 * Adds a cyclist to a random start node
+	 *
+	 * @memberOf VehicleController
+	 */
 	addCyclist () {
 		console.log('add Cyclist')
 		// cyclist spawn light nodes
@@ -134,6 +220,12 @@ export default class VehicleController extends Phaser.Group {
 		this.add(cyclist)
 	}
 
+	/**
+	 *
+	 * Initialize keys for debugging
+	 *
+	 * @memberOf VehicleController
+	 */
 	initDebugKeys () {
 		let key1 = this.game.input.keyboard.addKey(Phaser.Keyboard.ONE)
 		key1.onDown.add(this.addCar, this)
@@ -148,13 +240,18 @@ export default class VehicleController extends Phaser.Group {
 		let key6 = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
 		key6.onDown.add(this.addCarAtLane, this)
 	}
-
-	// specific
+	
+	/**
+	 *
+	 * Adds a car to a lane specified in LANE
+	 *
+	 * @memberOf VehicleController
+	 */
 	addCarAtLane () {
 		console.log('add Car at lane')
 		// car light nodes are defined from 1, 10
-		let lane = 7
-		let light = this.game.world.getByName('lightController').getByName(lane)
+		const LANE = 7
+		let light = this.game.world.getByName('lightController').getByName(LANE)
 		let car = new Car(this.game, light)
 
 		this.add(car)

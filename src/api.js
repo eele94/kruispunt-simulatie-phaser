@@ -1,6 +1,18 @@
 let instance = null
 
+/**
+ *
+ *
+ * @export
+ * @class API
+ */
 export default class API {
+	/**
+	 * Creates an instance of API.
+	 *
+	 *
+	 * @memberOf API
+	 */
 	constructor () {
 		if(!instance) {
 			instance = this
@@ -14,6 +26,14 @@ export default class API {
 		return instance
 	}
 
+	/**
+	 *
+	 *
+	 * @param {String} wsAddress
+	 * @param {LightController} lightController
+	 *
+	 * @memberOf API
+	 */
 	setup (wsAddress, lightController) {
 		this.wsAddress = wsAddress
 		this.lightController = lightController
@@ -21,22 +41,40 @@ export default class API {
 		this.connect(wsAddress)
 	}
 
+	/**
+	 *
+	 *
+	 * @param {String} wsAddress
+	 *
+	 * @memberOf API
+	 */
 	connect (wsAddress) {
 		if (wsAddress) {
 			this.wsAddress = wsAddress
 			console.log('Trying to connect @ %s', wsAddress)
 			this.ws = new WebSocket(wsAddress)
 
+			/**
+			 *
+			 */
 			this.ws.onopen = () => {
 				console.log('Connected')
 				this.sendTrafficState()
 			}
 
+			/**
+			 *
+			 *
+			 * @param {event} event
+			 */
 			this.ws.onmessage = (event) => {
-				// todo: validate json (event.data) with schema
-				this.lightController.setLightState(JSON.parse(event.data).state)
+				let parsed = JSON.parse(event.data)
+				this.lightController.setLightState(parsed.state)
 			}
 
+			/**
+			 *
+			 */
 			this.ws.onclose = () => {
 				console.log('disconnected')
 				setTimeout(() => {
@@ -46,6 +84,12 @@ export default class API {
 		}
 	}
 
+	/**
+	 *
+	 *
+	 *
+	 * @memberOf API
+	 */
 	sendTrafficState () {
 		// only send when the connection is open
 		if (this.ws.readyState === 1) {

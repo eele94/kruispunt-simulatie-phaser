@@ -1,8 +1,25 @@
 import Phaser from 'phaser'
 import API from './api'
 
+/**
+ *
+ *
+ * @export
+ * @class Light
+ * @extends {Phaser.Group}
+ */
 export default class Light  extends Phaser.Group {
 
+	/**
+	 * Creates an instance of Light.
+	 *
+	 * @param {Phaser.Game} game
+	 * @param {Phaser.Group} parent
+	 * @param {String} name
+	 * @param {Node} node
+	 *
+	 * @memberOf Light
+	 */
 	constructor (game, parent, name, node) {
 		super(game, parent, name)
 		this.id = node.id
@@ -15,7 +32,6 @@ export default class Light  extends Phaser.Group {
 		this.sprite.anchor.set(0.5)
 		this.add(this.sprite)
 		this.api = new API()
-		// this.color = 'green'
 		this.color = node.color
 
 		switch(node.dir) {
@@ -40,10 +56,23 @@ export default class Light  extends Phaser.Group {
 		})
 	}
 
+	/**
+	 *
+	 *
+	 * @readonly
+	 *
+	 * @memberOf Light
+	 */
 	get node () {
 		return this._node
 	}
 
+	/**
+	 *
+	 *
+	 *
+	 * @memberOf Light
+	 */
 	set color (val) {
 		this._color = val
 		switch(val) {
@@ -65,19 +94,43 @@ export default class Light  extends Phaser.Group {
 		}
 	}
 
+	/**
+	 *
+	 *
+	 *
+	 * @memberOf Light
+	 */
 	get color () {
 		return this._color
 	}
 
+	/**
+	 *
+	 *
+	 *
+	 * @memberOf Light
+	 */
 	set count (val) {
 		this._count = val
 		this.text.setText(this.id + ':' + this._count)
 		this.api.sendTrafficState()
 	}
+	/**
+	 *
+	 *
+	 *
+	 * @memberOf Light
+	 */
 	get count () {
 		return this._count
 	}
 
+	/**
+	 *
+	 *
+	 *
+	 * @memberOf Light
+	 */
 	update () {
 	}
 }

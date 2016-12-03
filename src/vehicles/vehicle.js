@@ -1,5 +1,12 @@
 import Phaser from 'phaser'
 
+/**
+ *
+ *
+ * @export
+ * @class Vehicle
+ * @extends {Phaser.Sprite}
+ */
 export default class Vehicle extends Phaser.Sprite {
 
 	/**
@@ -16,12 +23,14 @@ export default class Vehicle extends Phaser.Sprite {
 		super(game, 0, 0, asset)
 		this.anchor.set(0.5)
 		this.light = light
+
 		let pointsX = light.node.points.map(point => point.x)
+
 		let pointsY = light.node.points.map(point => point.y)
 
 		this.points = {
 			'x': pointsX,
-			'y': pointsY,
+			'y': pointsY
 		}
 
 		// Get the light locations
@@ -42,13 +51,13 @@ export default class Vehicle extends Phaser.Sprite {
 		this.path = []
 		this.plot()
 
-		// Step 1 spawn vehicle
+		// Spawn vehicle
 		this.drive()
 	}
 
 	/**
-	 * Calculates the path and interpolates the movement and the rotation of the vehicle
 	 *
+	 * Calculates the path and interpolates the movement and the rotation of the vehicle
 	 *
 	 * @memberOf Vehicle
 	 */
@@ -58,10 +67,10 @@ export default class Vehicle extends Phaser.Sprite {
 		let x = 10 / this.game.width
 
 		for (let i = 0; i <= 1; i += x) {
-			let px = Phaser.Math.linearInterpolation(this.points.x, i)
-			let py = Phaser.Math.linearInterpolation(this.points.y, i)
+			let px = Phaser.Math.bezierInterpolation(this.points.x, i)
+			let py = Phaser.Math.bezierInterpolation(this.points.y, i)
 
-			var node = { x: px, y: py, angle: 0, }
+			var node = { x: px, y: py, angle: 0 }
 
 			if (ix > 0) {
 				switch(this.light.node.dir) {
@@ -85,8 +94,13 @@ export default class Vehicle extends Phaser.Sprite {
 		}
 	}
 
+	/**
+	 *
+	 * Gets called at each frame update of the canvas
+	 *
+	 * @memberOf Vehicle
+	 */
 	update () {
-		// Ben ik klaar met rijden?
 		if (this.isDoneDriving()) {
 			this.remove()
 		} else {
@@ -102,7 +116,7 @@ export default class Vehicle extends Phaser.Sprite {
 					this.drive()
 				} else {
 					if (this.atPosition(this, this.calculateStopPosition(this.lightId))) {
-						// ZZzzzZzz
+						// Vehicle not driving here
 						// TODO: opnieuw plotten wanneer die stil staat, vanaf huidige punt
 						// this.plot()
 					} else {
@@ -115,7 +129,12 @@ export default class Vehicle extends Phaser.Sprite {
 		}
 	}
 
-	// Rijdt verder
+	/**
+	 *
+	 * Drives to the next interpolated point
+	 *
+	 * @memberOf Vehicle
+	 */
 	drive () {
 		this.x = this.path[this.pathIndex].x
 		this.y = this.path[this.pathIndex].y
@@ -123,28 +142,62 @@ export default class Vehicle extends Phaser.Sprite {
 		this.pathIndex++
 	}
 
-	// Is het licht groen?
+	/**
+	 *
+	 * Is the light green
+	 * @param {int} id
+	 * @returns boolean
+	 *
+	 * @memberOf Vehicle
+	 */
 	isLightGreen (id) {
 		let color = this.getLightById(id).color
 		return color === 'green'
 	}
 
-	// TODO: klopt die wel????
-	// Kom ik een licht tegen?
+	/**
+	 * Check if the given path contains a light
+	 *
+	 * @returns boolean
+	 *
+	 * @memberOf Vehicle
+	 */
 	isThereALight () {
 		return this.lightIndex < this.lightStopLocations.length
 	}
 
+	/**
+	 *
+	 * Give a id of a light and increase the count
+	 * @param {int} id
+	 *
+	 * @memberOf Vehicle
+	 */
 	increaseLightCount (id) {
 		this.getLightById(id).count++
 	}
 
+	/**
+	 *
+	 * Give a id of a light and decrease the count
+	 * @param {int} id
+	 *
+	 * @memberOf Vehicle
+	 */
 	decreaseLightCount (id) {
 		this.getLightById(id).count--
 		this.lightIndex++
 	}
 
-	// Heb ik positie bereikt?
+	/**
+	 * Check if points collide
+	 *
+	 * @param {Point} p1
+	 * @param {Point} p2
+	 * @returns boolean
+	 *
+	 * @memberOf Vehicle
+	 */
 	atPosition (p1, p2) {
 		var dx = p1.x - p2.x
 		var dy = p1.y - p2.y
@@ -152,19 +205,47 @@ export default class Vehicle extends Phaser.Sprite {
 		return distance < 10
 	}
 
-	// Klaar met rijden?
+	/**
+	 * checks if vehicle is done driving
+	 *
+	 * @returns boolean
+	 *
+	 * @memberOf Vehicle
+	 */
 	isDoneDriving () {
 		return this.pathIndex === this.path.length
 	}
 
+	/**
+	 *
+	 *
+	 *
+	 * @memberOf Vehicle
+	 */
 	remove () {
 		this.game.world.getByName('vehicleController').remove(this)
 	}
 
+	/**
+	 *
+	 *
+	 * @param {int} id
+	 * @returns Light
+	 *
+	 * @memberOf Vehicle
+	 */
 	getLightById (id) {
 		return this.game.world.getByName('lightController').getByName(id)
 	}
 
+	/**
+	 *
+	 *
+	 * @param {int} lightId
+	 * @returns Point
+	 *
+	 * @memberOf Vehicle
+	 */
 	calculateStopPosition (lightId) {
 		let distance = this.VEHICLE_DISTANCE * this.lightCount
 

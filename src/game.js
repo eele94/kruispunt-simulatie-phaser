@@ -1,11 +1,33 @@
-/* globals __DEV__ */
 import Phaser from 'phaser'
 import VehicleController from './vehicleController'
 import LightController from './lightController'
 import API from './api'
 
-export default class extends Phaser.State {
-	init () {}
+
+/**
+ *
+ *
+ * @export
+ * @class GameState
+ * @extends {Phaser.State}
+ */
+export default class GameState extends Phaser.State {
+	/**
+	 *
+	 *
+	 *
+	 * @memberOf GameState
+	 */
+	init () {
+		this.WSADDRESS = 'ws://localhost:8000'
+	}
+
+	/**
+	 *
+	 * Preloads assets and settings
+	 *
+	 * @memberOf GameState
+	 */
 	preload () {
 		this.game.resize()
 		// background
@@ -50,6 +72,12 @@ export default class extends Phaser.State {
 		this.load.image('bus', './assets/images/bus.png')
 	}
 
+	/**
+	 *
+	 *
+	 *
+	 * @memberOf GameState
+	 */
 	create () {
 		this.game.add.image(0, 0, 'background')
 
@@ -57,14 +85,16 @@ export default class extends Phaser.State {
 
 		this.lightController = new LightController(this.game, this.game.world, 'lightController', this.api)
 
-		// ws://localhost:4080
-		// ws://217.120.20.200:8080/ws lukas
-		// ws://2f63d2f2.ngrok.io
-		// eigen: ws://localhost:8000/
 		this.api = new API()
-		this.api.setup('ws://localhost:8000/', this.lightController)
+		this.api.setup(this.WSADDRESS, this.lightController)
 	}
 
+	/**
+	 *
+	 *
+	 *
+	 * @memberOf GameState
+	 */
 	render () {
 		if (__DEV__) {
 			let vehicles = this.vehicleController.children

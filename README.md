@@ -1,22 +1,17 @@
-# Phaser + ES6 + Webpack.
-#### A bootstrap project to create games with Phaser + ES6 + Webpack.
-
-![Phaser+ES6+Webpack](https://raw.githubusercontent.com/lean/phaser-es6-webpack/master/assets/images/phaser-es6-webpack.jpg)
-
-[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
-
+# Crossroad simulation
+#### With Phaser + ES6 + Webpack
 
 ## Features
-- JavaScript Standard Style
 - Next generation of Javascript
 - Webpack ready
 - Multiple browser testing
 - WebFont Loader
-- Responsive utilities!
 
+## Simulation features
+Keys 1 to 5 to spawn vehicles
 
 # Setup
-To use this bootstrap you’ll need to install a few things before you have a working copy of the project.
+To use this simulation you’ll need to install a few things before you have a working copy of the project.
 
 ## 1. Clone this repo:
 
@@ -24,7 +19,7 @@ Navigate into your workspace directory.
 
 Run:
 
-```git clone https://github.com/lean/phaser-es6-webpack.git```
+```git clone https://github.com/eele94/kruispunt-simulatie-phaser.git```
 
 ## 2. Install node.js and npm:
 
@@ -61,8 +56,6 @@ Run:
 This will optimize and minimize the compiled bundle.
 
 ## Credits
-Big thanks to this great repos:
+Big thanks to this great repo:
 
-https://github.com/belohlavek/phaser-es6-boilerplate
-
-https://github.com/cstuncsik/phaser-es6-demo
+https://github.com/lean/phaser-es6-webpack
