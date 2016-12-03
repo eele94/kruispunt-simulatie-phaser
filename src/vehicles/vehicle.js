@@ -41,6 +41,7 @@ export default class Vehicle extends Phaser.Sprite {
 		this.pathIndex = 0
 		this.path = []
 		this.plot()
+
 		// Step 1 spawn vehicle
 		this.drive()
 	}

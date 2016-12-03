@@ -12,7 +12,7 @@ export default class VehicleController extends Phaser.Group {
 		super(game, parent, name)
 		this.game = game
 		this.initDebugKeys()
-		this.generateVehicles()
+		// this.generateVehicles()
 	}
 
 	update () {

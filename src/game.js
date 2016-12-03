@@ -62,7 +62,7 @@ export default class extends Phaser.State {
 		// ws://2f63d2f2.ngrok.io
 		// eigen: ws://localhost:8000/
 		this.api = new API()
-		this.api.setup('ws://217.120.20.200:8080/ws?id=hoi', this.lightController)
+		this.api.setup('ws://localhost:8000/', this.lightController)
 	}
 
 	render () {
