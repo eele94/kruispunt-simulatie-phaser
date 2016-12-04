@@ -30,7 +30,7 @@ export default class Vehicle extends Phaser.Sprite {
 
 		this.points = {
 			'x': pointsX,
-			'y': pointsY,
+			'y': pointsY
 		}
 
 		// Get the light locations
@@ -70,7 +70,7 @@ export default class Vehicle extends Phaser.Sprite {
 			let px = Phaser.Math.bezierInterpolation(this.points.x, i)
 			let py = Phaser.Math.bezierInterpolation(this.points.y, i)
 
-			var node = { x: px, y: py, angle: 0, }
+			var node = { x: px, y: py, angle: 0 }
 
 			if (ix > 0) {
 				switch(this.light.node.dir) {

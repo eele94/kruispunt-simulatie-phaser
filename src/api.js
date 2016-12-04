@@ -54,27 +54,16 @@ export default class API {
 			console.log('Trying to connect @ %s', wsAddress)
 			this.ws = new WebSocket(wsAddress)
 
-			/**
-			 *
-			 */
 			this.ws.onopen = () => {
 				console.log('Connected')
 				this.sendTrafficState()
 			}
 
-			/**
-			 *
-			 *
-			 * @param {event} event
-			 */
 			this.ws.onmessage = (event) => {
 				let parsed = JSON.parse(event.data)
 				this.lightController.setLightState(parsed.state)
 			}
 
-			/**
-			 *
-			 */
 			this.ws.onclose = () => {
 				console.log('disconnected')
 				setTimeout(() => {
@@ -86,7 +75,7 @@ export default class API {
 
 	/**
 	 *
-	 *
+	 * Sends the state of all lights with a number of given vehicles
 	 *
 	 * @memberOf API
 	 */

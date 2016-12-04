@@ -7,7 +7,7 @@ import Bus from './vehicles/bus'
 import Cyclist from './vehicles/cyclist'
 
 /**
- *
+ * This class has control over the vehicles
  *
  * @export
  * @class VehicleController
@@ -28,7 +28,7 @@ export default class VehicleController extends Phaser.Group {
 		super(game, parent, name)
 		this.game = game
 		this.initDebugKeys()
-		this.generateVehicles()
+		// this.generateVehicles()
 	}
 
 	/**
@@ -240,7 +240,7 @@ export default class VehicleController extends Phaser.Group {
 		let key6 = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
 		key6.onDown.add(this.addCarAtLane, this)
 	}
-	
+
 	/**
 	 *
 	 * Adds a car to a lane specified in LANE
