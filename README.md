@@ -12,6 +12,16 @@
 ## Simulation features
 Keys 1 to 5 to spawn vehicles
 
+# Demo
+https://kruispunt-simulatie.herokuapp.com/
+default websocket connected to:
+ws://localhost:8000
+
+## Edit websocket address
+change it by editing the address param in the url:
+http://kruispunt-simulatie.herokuapp.com/?address=ws://myyexamplesocket
+
+
 # Setup
 To use this simulation you’ll need to install a few things before you have a working copy of the project.
 
