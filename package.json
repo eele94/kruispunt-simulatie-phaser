@@ -7,7 +7,7 @@
   "scripts": {
     "deploy": "webpack --config webpack.production.config.js",
     "dev": "webpack",
-    "start": "index.js",
+    "start": "node index.js",
     "test": "node test.js"
   },
   "license": "ISC",
