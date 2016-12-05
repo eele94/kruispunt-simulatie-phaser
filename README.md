@@ -1,4 +1,4 @@
-![build status]({{https://travis-ci.com/eele94/kruispunt-simulatie-phaser.svg?token=xzE4QFQAqsWGvcPXXtMe&branch=master}})
+[![Build Status](https://travis-ci.com/eele94/kruispunt-simulatie-phaser.svg?token=xzE4QFQAqsWGvcPXXtMe&branch=master)](https://travis-ci.com/eele94/kruispunt-simulatie-phaser)
 
 # Crossroad simulation
 #### With Phaser + ES6 + Webpack
