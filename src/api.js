@@ -38,7 +38,12 @@ export default class API {
 		this.wsAddress = wsAddress
 		this.lightController = lightController
 
-		this.connect(wsAddress)
+		let query = getQueryParams(document.location.search)
+
+		if(query.address !== undefined) {
+			this.wsAddress = query.address
+		}
+		this.connect(this.wsAddress)
 	}
 
 	/**
@@ -85,4 +90,18 @@ export default class API {
 			this.ws.send(JSON.stringify(this.lightController.getLightState()))
 		}
 	}
+}
+
+function getQueryParams (qs) {
+	qs = qs.split('+').join(' ')
+
+	var params = {},
+		tokens,
+		re = /[?&]?([^=]+)=([^&]*)/g
+
+	while (tokens = re.exec(qs)) {
+		params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2])
+	}
+
+	return params
 }
