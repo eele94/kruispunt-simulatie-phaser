@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import LightState from '../lightState'
 
 /**
  *
@@ -153,7 +154,7 @@ export default class Vehicle extends Phaser.Sprite {
 	 */
 	isLightGreen (id) {
 		let color = this.getLightById(id).color
-		return color === 'green'
+		return color === LightState.GREEN
 	}
 
 	/**

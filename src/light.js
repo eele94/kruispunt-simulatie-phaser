@@ -1,5 +1,6 @@
 import Phaser from 'phaser'
 import API from './api'
+import LightState from './lightState'
 
 /**
  *
@@ -76,16 +77,16 @@ export default class Light  extends Phaser.Group {
 	set color (val) {
 		this._color = val
 		switch(val) {
-		case 'green':
+		case LightState.GREEN:
 			this.sprite.frame = 2
 			break
-		case 'orange':
+		case LightState.ORANGE:
 			this.sprite.frame = 1
 			break
-		case 'yellow':
+		case LightState.YELLOW:
 			this.sprite.frame = 1
 			break
-		case 'red':
+		case LightState.RED:
 			this.sprite.frame = 0
 			break
 		default:
