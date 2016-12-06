@@ -19,7 +19,7 @@ export default class GameState extends Phaser.State {
 	 * @memberOf GameState
 	 */
 	init () {
-		this.WSADDRESS = 'ws://217.120.20.200:8080/ws?id=heroku'
+		this.WSADDRESS = 'ws://217.120.20.200:8080/ws?id=herokuuu'
 	}
 
 	/**
