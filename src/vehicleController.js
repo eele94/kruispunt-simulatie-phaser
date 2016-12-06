@@ -144,7 +144,6 @@ export default class VehicleController extends Phaser.Group {
 	 * @memberOf VehicleController
 	 */
 	addCar () {
-		console.log('add Car')
 		// car light nodes are defined from 1, 10
 		let random = this.game.rnd.integerInRange(1, 10)
 		let light = this.game.world.getByName('lightController').getByName(random)
@@ -160,7 +159,6 @@ export default class VehicleController extends Phaser.Group {
 	 * @memberOf VehicleController
 	 */
 	addTrain () {
-		console.log('add Train')
 		// train light nodes are defined from 45, 46
 		let random = this.game.rnd.integerInRange(45, 46)
 		let light = this.game.world.getByName('lightController').getByName(random)
@@ -176,7 +174,6 @@ export default class VehicleController extends Phaser.Group {
 	 * @memberOf VehicleController
 	 */
 	addBus () {
-		console.log('add Bus')
 		// bus light nodes are defined from 42
 		let light = this.game.world.getByName('lightController').getByName(42)
 		let bus = new Bus(this.game, light)
@@ -191,7 +188,6 @@ export default class VehicleController extends Phaser.Group {
 	 * @memberOf VehicleController
 	 */
 	addWalker () {
-		console.log('add Walker')
 		// walker spawn light nodes
 		// 33, 36, 38
 		let startNodes = [33, 36, 38]
@@ -209,7 +205,6 @@ export default class VehicleController extends Phaser.Group {
 	 * @memberOf VehicleController
 	 */
 	addCyclist () {
-		console.log('add Cyclist')
 		// cyclist spawn light nodes
 		// 23, 26, 28
 		let startNodes = [23, 26, 28]
@@ -248,13 +243,14 @@ export default class VehicleController extends Phaser.Group {
 	 * @memberOf VehicleController
 	 */
 	addCarAtLane () {
-		console.log('add Car at lane')
 		// car light nodes are defined from 1, 10
 		let LANE, light, car
 
 		LANE = 1
 		light = this.game.world.getByName('lightController').getByName(LANE)
 		car = new Car(this.game, light)
+
+		this.add(car)
 	}
 
 

@@ -105,7 +105,7 @@
 	__webpack_require__(/*! pixi */299);
 	__webpack_require__(/*! p2 */301);
 	__webpack_require__(/*! phaser */303);
-	module.exports = __webpack_require__(/*! webfontloader */317);
+	module.exports = __webpack_require__(/*! webfontloader */318);
 
 
 /***/ },
@@ -103456,7 +103456,7 @@
 
 /***/ },
 
-/***/ 317:
+/***/ 318:
 /*!******************************************!*\
   !*** ./~/webfontloader/webfontloader.js ***!
   \******************************************/

@@ -8963,11 +8963,11 @@ webpackJsonp([0],[
 	
 	var _vehicleController2 = _interopRequireDefault(_vehicleController);
 	
-	var _lightController = __webpack_require__(/*! ./lightController */ 313);
+	var _lightController = __webpack_require__(/*! ./lightController */ 314);
 	
 	var _lightController2 = _interopRequireDefault(_lightController);
 	
-	var _api = __webpack_require__(/*! ./api */ 316);
+	var _api = __webpack_require__(/*! ./api */ 317);
 	
 	var _api2 = _interopRequireDefault(_api);
 	
@@ -9128,23 +9128,23 @@ webpackJsonp([0],[
 	
 	var _vehicle2 = _interopRequireDefault(_vehicle);
 	
-	var _car = __webpack_require__(/*! ./vehicles/car */ 308);
+	var _car = __webpack_require__(/*! ./vehicles/car */ 309);
 	
 	var _car2 = _interopRequireDefault(_car);
 	
-	var _walker = __webpack_require__(/*! ./vehicles/walker */ 309);
+	var _walker = __webpack_require__(/*! ./vehicles/walker */ 310);
 	
 	var _walker2 = _interopRequireDefault(_walker);
 	
-	var _train = __webpack_require__(/*! ./vehicles/train */ 310);
+	var _train = __webpack_require__(/*! ./vehicles/train */ 311);
 	
 	var _train2 = _interopRequireDefault(_train);
 	
-	var _bus = __webpack_require__(/*! ./vehicles/bus */ 311);
+	var _bus = __webpack_require__(/*! ./vehicles/bus */ 312);
 	
 	var _bus2 = _interopRequireDefault(_bus);
 	
-	var _cyclist = __webpack_require__(/*! ./vehicles/cyclist */ 312);
+	var _cyclist = __webpack_require__(/*! ./vehicles/cyclist */ 313);
 	
 	var _cyclist2 = _interopRequireDefault(_cyclist);
 	
@@ -9332,7 +9332,6 @@ webpackJsonp([0],[
 		}, {
 			key: 'addCar',
 			value: function addCar() {
-				console.log('add Car');
 				// car light nodes are defined from 1, 10
 				var random = this.game.rnd.integerInRange(1, 10);
 				var light = this.game.world.getByName('lightController').getByName(random);
@@ -9351,7 +9350,6 @@ webpackJsonp([0],[
 		}, {
 			key: 'addTrain',
 			value: function addTrain() {
-				console.log('add Train');
 				// train light nodes are defined from 45, 46
 				var random = this.game.rnd.integerInRange(45, 46);
 				var light = this.game.world.getByName('lightController').getByName(random);
@@ -9370,7 +9368,6 @@ webpackJsonp([0],[
 		}, {
 			key: 'addBus',
 			value: function addBus() {
-				console.log('add Bus');
 				// bus light nodes are defined from 42
 				var light = this.game.world.getByName('lightController').getByName(42);
 				var bus = new _bus2.default(this.game, light);
@@ -9388,7 +9385,6 @@ webpackJsonp([0],[
 		}, {
 			key: 'addWalker',
 			value: function addWalker() {
-				console.log('add Walker');
 				// walker spawn light nodes
 				// 33, 36, 38
 				var startNodes = [33, 36, 38];
@@ -9409,7 +9405,6 @@ webpackJsonp([0],[
 		}, {
 			key: 'addCyclist',
 			value: function addCyclist() {
-				console.log('add Cyclist');
 				// cyclist spawn light nodes
 				// 23, 26, 28
 				var startNodes = [23, 26, 28];
@@ -9454,7 +9449,6 @@ webpackJsonp([0],[
 		}, {
 			key: 'addCarAtLane',
 			value: function addCarAtLane() {
-				console.log('add Car at lane');
 				// car light nodes are defined from 1, 10
 				var LANE = void 0,
 				    light = void 0,
@@ -9463,6 +9457,8 @@ webpackJsonp([0],[
 				LANE = 1;
 				light = this.game.world.getByName('lightController').getByName(LANE);
 				car = new _car2.default(this.game, light);
+	
+				this.add(car);
 			}
 	
 			/**
@@ -9517,7 +9513,7 @@ webpackJsonp([0],[
 	
 	var _phaser2 = _interopRequireDefault(_phaser);
 	
-	var _lightState = __webpack_require__(/*! ../lightState */ 318);
+	var _lightState = __webpack_require__(/*! ../lightState */ 308);
 	
 	var _lightState2 = _interopRequireDefault(_lightState);
 	
@@ -9605,6 +9601,7 @@ webpackJsonp([0],[
 			key: 'plot',
 			value: function plot() {
 				this.path = [];
+				this.pathIndex = 0;
 				var ix = 0;
 				var x = this.speed / this.game.width;
 	
@@ -9659,12 +9656,24 @@ webpackJsonp([0],[
 							this.decreaseLightCount(this.lightId);
 							this.drive();
 						} else {
-							if (this.atPosition(this, this.calculateStopPosition(this.lightId))) {
-								// Vehicle not driving here
-								// TODO: opnieuw plotten wanneer die stil staat, vanaf huidige punt
-								// this.plot()
+							var stopPosition = this.calculateStopPosition(this.lightId);
+							var isStopPositionValid = false;
+							for (var i = 0; i < this.path.length; i++) {
+								var margin = 5;
+								var dX = Math.abs(this.path[i].x - stopPosition.x);
+								var dY = Math.abs(this.path[i].y - stopPosition.y);
+								if (dX < margin && dY < margin) {
+									isStopPositionValid = true;
+									break;
+								}
+							}
+	
+							if (isStopPositionValid) {
+								if (this.atPosition(this, stopPosition)) {} else {
+									this.drive();
+								}
 							} else {
-								this.drive();
+								// Vehicle not driving here
 							}
 						}
 					} else {
@@ -9853,6 +9862,25 @@ webpackJsonp([0],[
 
 /***/ },
 /* 308 */
+/*!***************************!*\
+  !*** ./src/lightState.js ***!
+  \***************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = {
+		RED: 'red',
+		ORANGE: 'orange',
+		YELLOW: 'yellow',
+		GREEN: 'green'
+	};
+
+/***/ },
+/* 309 */
 /*!*****************************!*\
   !*** ./src/vehicles/car.js ***!
   \*****************************/
@@ -9908,7 +9936,7 @@ webpackJsonp([0],[
 	exports.default = Car;
 
 /***/ },
-/* 309 */
+/* 310 */
 /*!********************************!*\
   !*** ./src/vehicles/walker.js ***!
   \********************************/
@@ -9963,7 +9991,7 @@ webpackJsonp([0],[
 	exports.default = Walker;
 
 /***/ },
-/* 310 */
+/* 311 */
 /*!*******************************!*\
   !*** ./src/vehicles/train.js ***!
   \*******************************/
@@ -10021,7 +10049,7 @@ webpackJsonp([0],[
 	exports.default = Train;
 
 /***/ },
-/* 311 */
+/* 312 */
 /*!*****************************!*\
   !*** ./src/vehicles/bus.js ***!
   \*****************************/
@@ -10074,7 +10102,7 @@ webpackJsonp([0],[
 	exports.default = Bus;
 
 /***/ },
-/* 312 */
+/* 313 */
 /*!*********************************!*\
   !*** ./src/vehicles/cyclist.js ***!
   \*********************************/
@@ -10127,7 +10155,7 @@ webpackJsonp([0],[
 	exports.default = Cyclist;
 
 /***/ },
-/* 313 */
+/* 314 */
 /*!********************************!*\
   !*** ./src/lightController.js ***!
   \********************************/
@@ -10145,11 +10173,11 @@ webpackJsonp([0],[
 	
 	var _phaser2 = _interopRequireDefault(_phaser);
 	
-	var _nodes = __webpack_require__(/*! ./nodes */ 314);
+	var _nodes = __webpack_require__(/*! ./nodes */ 315);
 	
 	var _nodes2 = _interopRequireDefault(_nodes);
 	
-	var _light = __webpack_require__(/*! ./light */ 315);
+	var _light = __webpack_require__(/*! ./light */ 316);
 	
 	var _light2 = _interopRequireDefault(_light);
 	
@@ -10242,7 +10270,7 @@ webpackJsonp([0],[
 	exports.default = LightController;
 
 /***/ },
-/* 314 */
+/* 315 */
 /*!**********************!*\
   !*** ./src/nodes.js ***!
   \**********************/
@@ -10843,7 +10871,7 @@ webpackJsonp([0],[
 	}];
 
 /***/ },
-/* 315 */
+/* 316 */
 /*!**********************!*\
   !*** ./src/light.js ***!
   \**********************/
@@ -10861,11 +10889,11 @@ webpackJsonp([0],[
 	
 	var _phaser2 = _interopRequireDefault(_phaser);
 	
-	var _api = __webpack_require__(/*! ./api */ 316);
+	var _api = __webpack_require__(/*! ./api */ 317);
 	
 	var _api2 = _interopRequireDefault(_api);
 	
-	var _lightState = __webpack_require__(/*! ./lightState */ 318);
+	var _lightState = __webpack_require__(/*! ./lightState */ 308);
 	
 	var _lightState2 = _interopRequireDefault(_lightState);
 	
@@ -11036,7 +11064,7 @@ webpackJsonp([0],[
 	exports.default = Light;
 
 /***/ },
-/* 316 */
+/* 317 */
 /*!********************!*\
   !*** ./src/api.js ***!
   \********************/
@@ -11180,26 +11208,6 @@ webpackJsonp([0],[
 	
 		return params;
 	}
-
-/***/ },
-/* 317 */,
-/* 318 */
-/*!***************************!*\
-  !*** ./src/lightState.js ***!
-  \***************************/
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.default = {
-		RED: 'red',
-		ORANGE: 'orange',
-		YELLOW: 'yellow',
-		GREEN: 'green'
-	};
 
 /***/ }
 ]);

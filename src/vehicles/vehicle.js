@@ -65,6 +65,7 @@ export default class Vehicle extends Phaser.Sprite {
 	 */
 	plot () {
 		this.path = []
+		this.pathIndex = 0
 		let ix = 0
 		let x = this.speed / this.game.width
 
@@ -117,12 +118,26 @@ export default class Vehicle extends Phaser.Sprite {
 					this.decreaseLightCount(this.lightId)
 					this.drive()
 				} else {
-					if (this.atPosition(this, this.calculateStopPosition(this.lightId))) {
-						// Vehicle not driving here
-						// TODO: opnieuw plotten wanneer die stil staat, vanaf huidige punt
-						// this.plot()
+					let stopPosition = this.calculateStopPosition(this.lightId)
+					let isStopPositionValid = false
+					for(let i = 0; i< this.path.length; i++) {
+						let margin = 5
+						let dX = Math.abs(this.path[i].x - stopPosition.x)
+						let dY = Math.abs(this.path[i].y - stopPosition.y)
+						if (dX < margin && dY < margin) {
+							isStopPositionValid = true
+							break
+						}
+					}
+
+					if (isStopPositionValid) {
+						if (this.atPosition(this, stopPosition)) {
+
+						} else {
+							this.drive()
+						}
 					} else {
-						this.drive()
+						// Vehicle not driving here
 					}
 				}
 			} else {
