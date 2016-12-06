@@ -28,7 +28,7 @@ export default class VehicleController extends Phaser.Group {
 		super(game, parent, name)
 		this.game = game
 		this.initDebugKeys()
-		// this.generateVehicles()
+		this.generateVehicles()
 	}
 
 	/**
@@ -221,7 +221,7 @@ export default class VehicleController extends Phaser.Group {
 	}
 
 	/**
-	 *
+	 * For debugging
 	 * Initialize keys for debugging
 	 *
 	 * @memberOf VehicleController
@@ -242,7 +242,7 @@ export default class VehicleController extends Phaser.Group {
 	}
 
 	/**
-	 *
+	 * For debugging
 	 * Adds a car to a lane specified in LANE
 	 *
 	 * @memberOf VehicleController
@@ -250,10 +250,33 @@ export default class VehicleController extends Phaser.Group {
 	addCarAtLane () {
 		console.log('add Car at lane')
 		// car light nodes are defined from 1, 10
-		const LANE = 7
-		let light = this.game.world.getByName('lightController').getByName(LANE)
-		let car = new Car(this.game, light)
+		let LANE, light, car
 
-		this.add(car)
+		LANE = 1
+		light = this.game.world.getByName('lightController').getByName(LANE)
+		car = new Car(this.game, light)
+	}
+
+
+	/**
+	 * For debugging
+	 * Shows the points on the map of the specific route
+	 *
+	 * @param {int} lightId
+	 *
+	 * @memberOf VehicleController
+	 */
+	showRoutePoints (lightId) {
+		setTimeout(() => {
+			let points = this.game.world.getByName('lightController').getByName(lightId).node.points
+
+			points.forEach(p => {
+				let graphics = this.game.add.graphics(p.x, p.y)
+				graphics.lineStyle(0)
+				graphics.beginFill(0xFF0000, 0.5)
+				graphics.drawCircle(1, 15, 15)
+				graphics.endFill()
+			})
+		}, 300)
 	}
 }

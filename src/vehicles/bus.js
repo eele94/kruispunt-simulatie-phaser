@@ -10,8 +10,8 @@ export default class Bus extends Vehicle {
 	 * @memberOf Bus
 	 */
 	constructor (game, light) {
-
-		super(game, 'bus', light)
+		const SPEED = 8
+		super(game, 'bus', light, SPEED)
 		this.scale.set(0.6)
 		this.VEHICLE_DISTANCE = 220
 	}

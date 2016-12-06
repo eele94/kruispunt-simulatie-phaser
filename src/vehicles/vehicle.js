@@ -18,7 +18,7 @@ export default class Vehicle extends Phaser.Sprite {
 	 *
 	 * @memberOf Vehicle
 	 */
-	constructor (game, asset, light) {
+	constructor (game, asset, light, speed) {
 
 		super(game, 0, 0, asset)
 		this.anchor.set(0.5)
@@ -45,6 +45,7 @@ export default class Vehicle extends Phaser.Sprite {
 
 		// should be overridden in extended class
 		this.VEHICLE_DISTANCE = 0
+		this.speed = speed
 
 		this.rotationOffset = light.sprite.rotation
 		this.pathIndex = 0
@@ -64,7 +65,7 @@ export default class Vehicle extends Phaser.Sprite {
 	plot () {
 		this.path = []
 		let ix = 0
-		let x = 10 / this.game.width
+		let x = this.speed / this.game.width
 
 		for (let i = 0; i <= 1; i += x) {
 			let px = Phaser.Math.bezierInterpolation(this.points.x, i)
@@ -81,7 +82,7 @@ export default class Vehicle extends Phaser.Sprite {
 					node.angle = Phaser.Math.angleBetweenPoints(this.path[ix - 1], node)
 					break
 				case 'd':
-					node.angle = Phaser.Math.angleBetweenPointsY(this.path[ix - 1], node)
+					node.angle = Phaser.Math.angleBetweenPoints(this.path[ix - 1], node) -  Math.PI / 2
 					break
 				case 'l':
 					node.angle = Phaser.Math.angleBetweenPoints(node, this.path[ix - 1])

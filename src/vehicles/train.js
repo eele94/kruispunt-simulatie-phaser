@@ -10,7 +10,8 @@ export default class Train extends Vehicle {
 	 * @memberOf Train
 	 */
 	constructor (game, light) {
-		super(game, 'train', light)
+		const SPEED = 10
+		super(game, 'train', light, SPEED)
 		this.scale.set(0.4)
 
 		if (this.light.node.dir === 'l') {

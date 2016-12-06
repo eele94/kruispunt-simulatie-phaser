@@ -10,8 +10,8 @@ export default class Cyclist extends Vehicle {
 	 * @memberOf Cyclist
 	 */
 	constructor (game, light) {
-
-		super(game, 'cyclist', light)
+		const SPEED = 4
+		super(game, 'cyclist', light, SPEED)
 		this.scale.set(0.6)
 		this.VEHICLE_DISTANCE = 60
 	}
